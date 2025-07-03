@@ -11,11 +11,16 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch(err => {
+    console.error('MongoDB connection error:', err.message);
+    console.error('Please check your MONGO_URI in .env file and ensure:')
+    console.error('1. Your MongoDB Atlas cluster is running')
+    console.error('2. Your IP address is whitelisted in MongoDB Atlas')
+    console.error('3. Your connection string includes username, password, and database name')
+    process.exit(1);
+  });
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
