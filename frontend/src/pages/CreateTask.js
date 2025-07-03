@@ -38,7 +38,7 @@ const CreateTask = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/tasks/users/list');
-      setUsers(response.data);
+      setUsers(response.data.users);
     } catch (error) {
       console.error('Error fetching users:', error);
       setError('Failed to load users');

@@ -39,7 +39,7 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       const tasksResponse = await axios.get('http://localhost:5000/api/tasks');
-      const tasks = tasksResponse.data;
+      const tasks = tasksResponse.data.tasks;
 
       // Calculate statistics
       const totalTasks = tasks.length;

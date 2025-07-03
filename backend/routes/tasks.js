@@ -21,6 +21,11 @@ router.post('/', auth, rbac(['Manager', 'Admin']), createTask);
 // @access  Private
 router.get('/', auth, getTasks);
 
+// @route   GET /api/tasks/users/list
+// @desc    Get all users for task assignment
+// @access  Private
+router.get('/users/list', auth, getUsers);
+
 // @route   GET /api/tasks/:id
 // @desc    Get a single task
 // @access  Private
@@ -35,10 +40,5 @@ router.put('/:id', auth, updateTask);
 // @desc    Delete a task
 // @access  Private (Manager, Admin)
 router.delete('/:id', auth, rbac(['Manager', 'Admin']), deleteTask);
-
-// @route   GET /api/tasks/users/list
-// @desc    Get all users for task assignment
-// @access  Private
-router.get('/users/list', auth, getUsers);
 
 module.exports = router;

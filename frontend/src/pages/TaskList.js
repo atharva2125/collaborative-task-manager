@@ -60,7 +60,7 @@ const TaskList = () => {
   const fetchTasks = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/tasks');
-      setTasks(response.data);
+      setTasks(response.data.tasks);
     } catch (error) {
       console.error('Error fetching tasks:', error);
       setError('Failed to load tasks');
@@ -72,7 +72,7 @@ const TaskList = () => {
   const fetchUsers = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/tasks/users/list');
-      setUsers(response.data);
+      setUsers(response.data.users);
     } catch (error) {
       console.error('Error fetching users:', error);
     }
